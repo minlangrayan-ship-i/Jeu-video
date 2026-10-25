@@ -1,0 +1,624 @@
+/* Exploration interface: compact, collapsible and kept away from the player. */
+.world-vignette {
+  background: linear-gradient(
+    180deg,
+    #21372e12,
+    transparent 23%,
+    transparent 78%,
+    #173d3c30
+  );
+}
+.topbar {
+  top: 18px;
+  left: 22px;
+  right: 22px;
+  padding: 0;
+  height: 62px;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  pointer-events: none;
+}
+.topbar > * {
+  pointer-events: auto;
+}
+.brand {
+  background: #fff9ebed;
+  padding: 9px 15px 9px 10px;
+  border: 1px solid #fff6;
+  border-radius: 15px;
+  box-shadow: 0 6px 25px #15383712;
+  font-size: 24px;
+}
+.brand-mark {
+  width: 39px;
+  height: 39px;
+}
+.desktop-nav {
+  height: auto;
+  border-radius: 14px;
+  padding: 5px;
+  background: #193f3cdd;
+  backdrop-filter: blur(8px);
+  border: 1px solid #c2d8ce44;
+  gap: 2px;
+  box-shadow: 0 6px 25px #15383712;
+}
+.nav-item {
+  color: #dfdfc7;
+  font-size: 11px;
+  padding: 12px 15px;
+}
+.nav-item.active {
+  background: #f7efd9;
+  color: #244d43;
+}
+.nav-item:hover {
+  color: #a3bda8;
+}
+.header-actions {
+  gap: 8px;
+  padding: 7px 9px;
+  background: #fff9ebed;
+  border: 1px solid #fff6;
+  border-radius: 14px;
+}
+.local-save {
+  display: none;
+}
+.user-avatar img.portrait,
+.npc-avatar img.portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none;
+}
+.daily-panel {
+  top: 103px;
+  left: 22px;
+  width: 276px;
+  padding: 18px;
+  border-radius: 15px;
+  background: #fff9ebed;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 35px #15383717;
+}
+.panel-eyebrow {
+  font-size: 7px;
+  letter-spacing: 1.3px;
+}
+.day-counter {
+  font-size: 14px;
+}
+.plan-toggle {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  background: #e8ead9;
+  border-radius: 8px;
+  color: #6b7e59;
+  margin: -5px -5px -5px 1px;
+}
+.plan-toggle .icon {
+  width: 15px;
+  height: 15px;
+}
+.daily-panel h1 {
+  font-size: 29px;
+  margin: 16px 0 13px;
+  line-height: 1.1;
+}
+.daily-panel h1 br {
+  display: none;
+}
+.daily-panel h1 em::before {
+  content: " ";
+}
+.daily-panel .panel-intro,
+.daily-panel .task-list,
+.daily-panel .panel-footer {
+  display: none;
+}
+.daily-panel .day-progress {
+  display: flex;
+  margin-top: 9px;
+}
+.daily-panel .progress-track {
+  display: block;
+  height: 3px;
+}
+.current-objective {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  margin: 15px 0;
+  font-size: 11px;
+  line-height: 1.7;
+  color: #647758;
+}
+.current-objective .icon {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+}
+.daily-panel .route-button {
+  min-height: 42px;
+  font-size: 11px;
+}
+.daily-panel.expanded {
+  width: 306px;
+}
+.daily-panel.expanded .task-list,
+.daily-panel.mobile-open .task-list {
+  display: flex;
+}
+.daily-panel.expanded .current-objective,
+.daily-panel.mobile-open .current-objective {
+  display: none;
+}
+.daily-panel.expanded .task-copy > span {
+  font-size: 10px;
+}
+.weather-card {
+  top: 103px;
+  right: 22px;
+  width: 210px;
+  padding: 14px 17px;
+  background: #fff9ebed;
+  backdrop-filter: blur(8px);
+}
+.weather-date {
+  font-size: 8px;
+}
+.fiction-label {
+  font-size: 6px;
+}
+.weather-main {
+  margin: 11px 0 3px;
+}
+.weather-main strong {
+  font-size: 29px;
+}
+.weather-main > div > span {
+  font-size: 9px;
+}
+.weather-symbol {
+  width: 34px;
+  height: 34px;
+}
+.weather-symbol .icon {
+  width: 22px;
+  height: 22px;
+}
+.temperature {
+  font-size: 24px;
+}
+.weather-bottom,
+.town-label,
+.bottom-caption {
+  display: none;
+}
+.map-wrap {
+  top: 245px;
+  right: 22px;
+  bottom: auto;
+  width: 120px;
+  padding: 8px;
+  background: #fff9ebed;
+}
+.minimap-toggle {
+  padding: 6px 2px;
+}
+.minimap-content {
+  display: none;
+}
+.minimap-content.expanded {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  display: block;
+  width: 170px;
+  padding: 10px;
+  background: #fff9ebf5;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px #15383725;
+}
+.nearby-card {
+  left: 22px;
+  right: auto;
+  bottom: 32px;
+  background: #193f3ce8;
+  color: #fff0cf;
+  border-color: #d4d8ba55;
+  backdrop-filter: blur(8px);
+  max-width: 420px;
+}
+.nearby-card small {
+  color: #b9c9ac;
+  font-size: 7px;
+}
+.nearby-card strong {
+  font-size: 17px;
+}
+.nearby-icon {
+  color: #c4d7a9;
+  background: #a2b79522;
+}
+.nearby-card > button {
+  background: #a7c5aa22;
+  color: #f8e8c4;
+}
+.nearby-card > button:hover {
+  background: #a7c5aa44;
+}
+.world-controls {
+  left: auto;
+  right: 22px;
+  bottom: 32px;
+  gap: 6px;
+}
+.world-controls > .icon-button {
+  width: 40px;
+  height: 40px;
+  background: #fff9ebeb;
+  border: 1px solid #fff8;
+  color: #305849;
+}
+.world-controls .rotate-left .icon {
+  transform: rotate(180deg);
+}
+.world-controls [aria-pressed="true"] {
+  background: #335f51;
+  color: #fff0cf;
+}
+.camera-hint {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 6px;
+  font-weight: 600;
+  letter-spacing: 1.3px;
+  color: #fff3d9;
+  text-shadow: 0 1px 5px #244632;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.camera-hint span {
+  padding: 0 7px;
+}
+.toast {
+  bottom: 100px;
+}
+.immersive .daily-panel,
+.immersive .weather-card,
+.immersive .topbar,
+.immersive .map-wrap,
+.immersive .camera-hint {
+  display: none;
+}
+.conversation-dialog {
+  bottom: 28px;
+}
+
+@media (max-width: 1100px) and (min-width: 761px) {
+  .brand {
+    font-size: 20px;
+  }
+  .nav-item {
+    padding: 11px;
+    font-size: 10px;
+  }
+  .daily-panel {
+    width: 246px;
+  }
+  .daily-panel h1 {
+    font-size: 27px;
+  }
+  .world-controls {
+    gap: 4px;
+  }
+  .world-controls > .icon-button {
+    min-width: 34px;
+    width: 34px;
+    height: 36px;
+  }
+  .camera-hint {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .topbar {
+    top: 11px;
+    left: 12px;
+    right: 12px;
+    height: 49px;
+  }
+  .brand {
+    padding: 7px 11px 7px 7px;
+    border-radius: 12px;
+    font-size: 20px;
+    gap: 8px;
+  }
+  .brand-mark {
+    width: 31px;
+    height: 31px;
+    font-size: 28px;
+    border-radius: 9px;
+  }
+  .brand small {
+    font-size: 5px;
+    letter-spacing: 1.15px;
+  }
+  .desktop-nav {
+    display: none;
+  }
+  .header-actions {
+    padding: 5px;
+    gap: 3px;
+    border-radius: 12px;
+  }
+  .daily-panel {
+    top: 77px;
+    left: 12px;
+    width: calc(100% - 139px);
+    padding: 13px;
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+  }
+  .panel-eyebrow {
+    font-size: 5.5px;
+    letter-spacing: 0.7px;
+    gap: 4px;
+  }
+  .day-counter {
+    font-size: 12px;
+  }
+  .day-counter > span {
+    font-size: 7px;
+  }
+  .plan-toggle {
+    width: 24px;
+    height: 25px;
+    min-width: 24px;
+    margin-left: 0;
+  }
+  .plan-toggle .icon {
+    width: 13px;
+    height: 13px;
+  }
+  .daily-panel h1 {
+    font-size: 23px;
+    margin: 12px 0;
+    letter-spacing: -0.5px;
+  }
+  .daily-panel .day-progress {
+    font-size: 7px;
+    margin-top: 4px;
+  }
+  .day-progress > span > span {
+    font-size: 6px;
+  }
+  .day-progress strong {
+    font-size: 10px;
+  }
+  .day-progress strong span {
+    font-size: 8px;
+  }
+  .current-objective {
+    font-size: 9px;
+    line-height: 1.6;
+    gap: 6px;
+    margin: 11px 0;
+  }
+  .current-objective .icon {
+    width: 12px;
+    height: 12px;
+  }
+  .daily-panel .route-button {
+    font-size: 9px;
+    min-height: 36px;
+    padding: 9px 10px;
+  }
+  .weather-card {
+    top: 77px;
+    right: 12px;
+    width: 103px;
+    padding: 13px;
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+  }
+  .weather-date {
+    display: none;
+  }
+  .weather-main {
+    margin: 0;
+    gap: 7px;
+  }
+  .weather-main strong {
+    font-size: 25px;
+  }
+  .weather-main > div > span {
+    font-size: 8px;
+  }
+  .weather-symbol {
+    width: 26px;
+    height: 26px;
+  }
+  .weather-symbol .icon {
+    width: 18px;
+    height: 18px;
+  }
+  .temperature {
+    font-size: 20px;
+  }
+  .map-wrap {
+    right: 12px;
+    top: 216px;
+    width: 103px;
+  }
+  .minimap-toggle {
+    font-size: 6px;
+    gap: 5px;
+  }
+  .minimap-content.expanded {
+    top: 41px;
+    width: 155px;
+  }
+  .world-controls {
+    bottom: 166px;
+    right: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, 34px);
+    gap: 6px;
+  }
+  .world-controls > .icon-button {
+    display: flex;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    border-radius: 9px;
+  }
+  .world-controls > span {
+    display: none;
+  }
+  .world-controls > [data-action="sound"],
+  .world-controls > [data-action="help"] {
+    display: none;
+  }
+  .world-controls > [data-action="overview"] {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .world-controls > [data-action="rotate-right"] {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .world-controls > [data-action="zoom-in"] {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .world-controls > [data-action="zoom-out"] {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .world-controls > [data-action="immersive"] {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  .camera-hint {
+    display: none;
+  }
+  .nearby-card {
+    bottom: 89px;
+    left: auto;
+    right: 12px;
+    padding: 10px;
+    max-width: calc(100% - 140px);
+    gap: 7px;
+    border-radius: 12px;
+  }
+  .nearby-card strong {
+    font-size: 13px;
+  }
+  .nearby-card small {
+    font-size: 5px;
+    letter-spacing: 0.8px;
+  }
+  .nearby-card > button {
+    min-width: 30px;
+    height: 33px;
+    padding: 7px;
+  }
+  .joystick {
+    bottom: 112px;
+    left: 24px;
+    width: 88px;
+    height: 88px;
+    background: #193f3c30;
+    border-color: #f5efdca3;
+  }
+  .joystick-knob {
+    left: 24px;
+    top: 24px;
+    background: #f8eed4e6;
+    box-shadow: 0 3px 12px #193f3c33;
+  }
+  .mobile-nav {
+    background: #fff8e8ed;
+    padding-top: 7px;
+  }
+  .daily-panel.expanded,
+  .daily-panel.mobile-open {
+    top: 77px;
+    left: 12px;
+    width: calc(100% - 24px);
+    max-width: none;
+    bottom: 83px;
+    padding: 22px;
+    overflow-y: auto;
+    z-index: 8;
+    background: #fff9ebfa;
+  }
+  .daily-panel.expanded h1,
+  .daily-panel.mobile-open h1 {
+    font-size: 34px;
+  }
+  .daily-panel.expanded .route-button,
+  .daily-panel.mobile-open .route-button {
+    min-height: 44px;
+    font-size: 12px;
+  }
+  .daily-panel.expanded .task-list,
+  .daily-panel.mobile-open .task-list {
+    margin: 20px 0;
+  }
+  .daily-panel.expanded .task-copy > span,
+  .daily-panel.mobile-open .task-copy > span {
+    font-size: 11px;
+  }
+  .daily-panel.expanded .day-progress,
+  .daily-panel.mobile-open .day-progress {
+    font-size: 10px;
+  }
+  .toast {
+    bottom: 84px;
+  }
+  .conversation-dialog {
+    bottom: 78px;
+  }
+  .immersive .mobile-nav {
+    display: none;
+  }
+  .immersive .joystick {
+    bottom: 50px;
+  }
+  .immersive .nearby-card {
+    bottom: 25px;
+  }
+  .immersive .world-controls {
+    bottom: 110px;
+  }
+}
+@media (max-width: 380px) {
+  .daily-panel {
+    width: calc(100% - 132px);
+    padding: 11px;
+  }
+  .daily-panel h1 {
+    font-size: 21px;
+  }
+  .weather-card {
+    width: 96px;
+    padding: 11px;
+  }
+  .brand {
+    font-size: 18px;
+  }
+  .plan-toggle {
+    width: 22px;
+    min-width: 22px;
+  }
+}

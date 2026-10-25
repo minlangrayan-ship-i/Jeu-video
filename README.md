@@ -5,6 +5,8 @@ Une première version jouable d’un jeu d’immersion en anglais, en **3D**, co
 ## Jouer
 
 - Marchez en touchant le sol, avec les flèches, ZQSD ou WASD. Un joystick apparaît sur mobile.
+- Faites glisser le décor pour tourner la caméra ; utilisez la molette ou les boutons + et − pour zoomer. Les commandes de marche suivent l’orientation de la caméra.
+- Les boutons de vue d’ensemble et de masquage des panneaux permettent de choisir entre explorer de près, repérer les lieux et profiter du décor. Le calendrier ouvre le détail des étapes du jour.
 - Les bâtiments, le plan et le bouton **Rejoindre** permettent de retrouver un habitant à pied, en contournant les bâtiments.
 - Chaque journée comprend trois situations : matin, après-midi, soir. Réussir le défi guidé débloque la suite. Les essais sont illimités.
 - **Écrire** et **Parler** permettent de s’entraîner librement, puis de comparer sa réponse avec un exemple. Ces modes ne prétendent pas corriger toutes les réponses possibles.
@@ -13,7 +15,8 @@ Une première version jouable d’un jeu d’immersion en anglais, en **3D**, co
 
 ## Ce qui est inclus
 
-- Un quartier 3D créé en géométrie procédurale : maison, café, marché, studio, librairie, parc et quai ; six voisins et un personnage animé avec un sac à dos.
+- Un quartier 3D en perspective : façades variées, briques et ardoises texturées, vitrines, fleurs, terrasse, parc, promenade, bateaux, phare et mer animée. Les textures sont générées localement.
+- Des personnages humains KayKit sous licence CC0, avec animations de repos, marche, course et interaction, ainsi que des portraits tirés des modèles 3D. Les bâtiments et arbres s’estompent lorsqu’ils masquent le joueur.
 - 30 journées, **90 situations distinctes** et des explications en français. Le [parcours détaillé](docs/parcours-30-jours.md) récapitule chaque objectif.
 - Un calendrier fictif cohérent du lundi 1er au mardi 30 juin 2026, avec semaines, météo, pluie et lumière de fin de journée. Il ne dépend pas de la météo réelle et ne demande aucune géolocalisation.
 - Trois moments par journée. Environ 5 à 10 minutes pour une journée, selon votre rythme ; aucune limite, pénalité de retard ou attente jusqu’au lendemain réel. Le jeu n’avance pas en votre absence.
@@ -38,7 +41,7 @@ npm run build
 npm run preview
 ```
 
-`dist/` est le site statique à héberger. La base relative permet un déploiement dans le sous-chemin GitHub Pages du dépôt. Le build fait environ 1 Mo non compressé, sans gros modèles 3D ou fichiers audio. Les dépendances de développement ne sont pas publiées avec le site.
+`dist/` est le site statique à héberger. La base relative permet un déploiement dans le sous-chemin GitHub Pages du dépôt. Le build fait environ 2 Mo non compressés, dont environ 1 Mo de personnages et animations. Les clips inutilisés ont été retirés ; les textures sont générées et aucun fichier audio n’est nécessaire. Les dépendances de développement ne sont pas publiées avec le site.
 
 ## Vérifier
 
@@ -46,7 +49,7 @@ npm run preview
 npm test
 ```
 
-Les tests Playwright vérifient les 90 situations, WebGL, les trajets réels, les retours après une erreur, les exercices écrits, le carnet, la sauvegarde/reprise, l’interface tactile, le jour 30 et l’effacement des seules données du jeu. Chromium est utilisé à `/usr/bin/chromium` ; définissez `CHROMIUM_PATH` pour un autre chemin. Sur une autre machine, installez Chromium ou adaptez cette variable. Les tests démarrent leur propre serveur sur le port 4173.
+Les cinq tests Playwright vérifient les 90 situations, le chargement des modèles, WebGL, les trajets réels, l’animation du squelette, la caméra et les décors masquants, les modes de vue, les retours après une erreur, les exercices écrits, le carnet, la sauvegarde/reprise, l’interface tactile, le jour 30 et l’effacement des seules données du jeu. Chromium est utilisé à `/usr/bin/chromium` ; définissez `CHROMIUM_PATH` pour un autre chemin. Sur une autre machine, installez Chromium ou adaptez cette variable. Les tests démarrent leur propre serveur sur le port 4173.
 
 Les tests de navigateur sont des simulations de téléphone ; ils ne remplacent pas une validation sur des téléphones physiques. La reconnaissance et la synthèse vocales dépendent du navigateur, de ses permissions, de son fournisseur et des voix installées ; elles ne sont pas garanties sur tous les appareils.
 
@@ -76,10 +79,16 @@ Les personnages suivent des dialogues écrits, sans IA générative. Les pourcen
 | Fichier | Rôle |
 | --- | --- |
 | `src/world.js` | Ville, personnage, collisions, chemins, météo, caméra, animations et regroupement des géométries |
+| `src/scenery.js` | Architecture, textures, côte, mer, végétation et mobilier |
+| `src/residents.js` | Chargement des modèles GLB, animation squelettique, portraits et optimisation |
 | `src/content.js` | 30 jours, 90 situations, habitants et activités |
 | `src/main.js` | Interface, conversations, voix, carnet et commandes tactiles |
 | `src/state.js` | Lecture, validation et sauvegarde des données locales |
 | `src/style.css` | Interface responsive, typographie et fenêtres de jeu |
+| `src/experience.css` | Interface d’exploration compacte et mode sans panneaux |
+| `scripts/prepare-characters.py` | Reproduction des ressources avec versions et sommes de contrôle fixes |
 | `tests/game.spec.js` | Vérifications fonctionnelles |
 
 Three.js est distribué sous licence MIT. Les polices DM Sans et DM Serif Display sont distribuées sous SIL Open Font License par les paquets Fontsource ; leurs licences sont incluses dans ces dépendances.
+
+Les personnages et animations sont créés par Kay Lousberg / KayKit et distribués sous CC0. Les [crédits et sources versionnées](public/models/CREDITS.md) ainsi que la licence complète sont inclus. Les modèles préparés sont versionnés : le script de préparation n’est pas requis pour installer ou jouer.
