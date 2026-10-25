@@ -54,6 +54,8 @@ Les tests de navigateur sont des simulations de téléphone ; ils ne remplacent 
 
 Le workflow [deploy.yml](.github/workflows/deploy.yml) construit et déploie le site à chaque push sur `main`.
 
+Conserver ce seul workflow de publication. Les modèles GitHub « Static content » et « Jekyll » publient les sources sans la compilation Vite nécessaire et peuvent annuler ce déploiement. L’artefact publié doit être le dossier `dist/`, jamais la racine du dépôt.
+
 1. Dans le dépôt GitHub, ouvrir **Settings → Pages**.
 2. Choisir **GitHub Actions** comme source.
 3. Lancer ou relancer **Deploy Hello Harbour** dans **Actions**.
