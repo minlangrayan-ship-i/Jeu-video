@@ -49,7 +49,7 @@ export class HarbourWorld {
     this.player.traverse(o=>{o.castShadow=false;});
     this.player.position.set(-12, 0.1, 14);
     this.scene.add(this.player);
-    if(innerWidth<700) this.cameraFocus.copy(this.player.position).multiplyScalar(0.75).setY(0);
+    this.cameraFocus.copy(this.player.position).multiplyScalar(innerWidth<700?0.75:0.6).setY(0);
     const tagCanvas=document.createElement('canvas');tagCanvas.width=128;tagCanvas.height=48;
     const tagContext=tagCanvas.getContext('2d');tagContext.fillStyle='#244b3e';tagContext.beginPath();tagContext.roundRect(0,0,128,48,20);tagContext.fill();
     tagContext.fillStyle='#fff3d4';tagContext.font='600 25px sans-serif';tagContext.textAlign='center';tagContext.fillText('YOU',64,33);
@@ -442,8 +442,8 @@ export class HarbourWorld {
       for(let i=0;i<p.count;i++) { let y=p.getY(i)-dt*12; if(y<0)y=25; p.setY(i,y); }
       p.needsUpdate=true;
     }
-    const desired=new THREE.Vector3(this.player.position.x*0.27,0,this.player.position.z*0.27);
-    // Keep a wider view on desktop so the town remains readable beside the HUD.
+    const desired=new THREE.Vector3(this.player.position.x*0.6,0,this.player.position.z*0.6);
+    // Keep the player clear of the left panel, with a wider view on desktop.
     if(innerWidth<700) desired.copy(this.player.position).multiplyScalar(0.75).setY(0);
     this.cameraFocus.lerp(desired,this.reducedMotion?1:1-Math.exp(-dt*2));
     this.camera.position.copy(this.cameraFocus).add(new THREE.Vector3(28,33,34));
